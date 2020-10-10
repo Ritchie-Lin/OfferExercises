@@ -1,6 +1,14 @@
 #include "list.h"
 #include <iostream>
 
+
+/**
+ * 初始化链表
+ * @param head 指向链表头节点指针的指针
+ * @param value 头节点的值
+ * @version 1.0
+ * @author Ritchie.Lin
+ */
 bool InitList(ListNode **head, int value)
 {
     *head = new ListNode;
@@ -14,6 +22,13 @@ bool InitList(ListNode **head, int value)
     return false;
 }
 
+/**
+ * 向链表尾部添加节点
+ * @param head 指向链表头节点的指针
+ * @param value 新添加节点的值
+ * @version 1.0
+ * @author Ritchie.Lin
+ */
 ListNode* AddNodeToList(ListNode *head, int value)
 {
     if (head == nullptr)
@@ -40,6 +55,12 @@ ListNode* AddNodeToList(ListNode *head, int value)
     return newNode;
 }
 
+/**
+ * 打印链表各节点的值
+ * @param head 指向链表头节点的指针
+ * @version 1.0
+ * @author Ritchie.Lin
+ */
 bool PrintfList(ListNode *head)
 {
     if (head == nullptr)
@@ -60,6 +81,12 @@ bool PrintfList(ListNode *head)
     return true;
 }
 
+/**
+ * 打印链表各节点的值和另外指针的指向
+ * @param head 指向链表头节点的指针
+ * @version 1.0
+ * @author Ritchie.Lin
+ */
 bool PrintfListWithSibling(ListNode *head)
 {
     if (head == nullptr)
@@ -89,6 +116,12 @@ bool PrintfListWithSibling(ListNode *head)
     return true;
 }
 
+/**
+ * 删除链表，释放资源
+ * @param head 指向链表头节点指针的指针
+ * @version 1.0
+ * @author Ritchie.Lin
+ */
 bool DeleteList(ListNode **head)
 {
     if (head == nullptr || *head == nullptr)
