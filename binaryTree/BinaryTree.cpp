@@ -188,3 +188,54 @@ vector<vector<int> > levelOrderWithLevel(BinaryTreeNode* tree)
     }
     return ret;
 }
+
+/**
+ * 层序遍历二叉树，按层打印出来
+ * @param pTreeRoot 二叉树根节点
+ * @version 1.0
+ * @author Ritchie.Lin
+ */
+void PrintFromTopToBottomWithLevel(BinaryTreeNode* pTreeRoot)
+{
+    if (pTreeRoot == nullptr)
+    {
+        cout << "null tree, return!" << endl;
+        return;
+    }
+
+    deque<BinaryTreeNode*> dequeTreeNode;
+
+    dequeTreeNode.push_back(pTreeRoot);
+    int toBePrintCount = 1;
+    int nextLevelCount = 0;
+
+    while (!dequeTreeNode.empty())
+    {
+        BinaryTreeNode* pNode = dequeTreeNode.front();
+        dequeTreeNode.pop_front();
+
+        cout << pNode->m_value << " ";
+
+        if (pNode->m_pLeft)
+        {
+            dequeTreeNode.push_back(pNode->m_pLeft);
+            nextLevelCount++;
+        }
+
+        if (pNode->m_pRight)
+        {
+            dequeTreeNode.push_back(pNode->m_pRight);
+            nextLevelCount++;
+        }
+
+        if (--toBePrintCount == 0)
+        {
+            cout << endl;
+            toBePrintCount = nextLevelCount;
+            nextLevelCount = 0;
+        }
+    }
+
+    cout << endl;
+    return;
+}

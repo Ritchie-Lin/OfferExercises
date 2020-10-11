@@ -1,6 +1,8 @@
 #include "list.h"
 #include <iostream>
+#include <iomanip>
 
+using namespace std;
 
 /**
  * 初始化链表
@@ -33,7 +35,7 @@ ListNode* AddNodeToList(ListNode *head, int value)
 {
     if (head == nullptr)
     {
-        std::cout << "head is nullptr" << std::endl;
+        cout << "head is nullptr" << endl;
         return nullptr;
     }
 
@@ -42,7 +44,7 @@ ListNode* AddNodeToList(ListNode *head, int value)
     newNode->m_pNext = nullptr;
     if (newNode == nullptr)
     {
-        std::cout << "node alloc fail" << std::endl;
+        cout << "node alloc fail" << endl;
         return nullptr;
     }
     
@@ -65,7 +67,7 @@ bool PrintfList(ListNode *head)
 {
     if (head == nullptr)
     {
-        std::cout << "invalid input" << std::endl;
+        cout << "invalid input" << endl;
         return false;
     }
 
@@ -73,7 +75,7 @@ bool PrintfList(ListNode *head)
     int i = 0;
     while (node != nullptr)
     {
-        std::cout << "node[" << i << "]" <<" " << node->value << std::endl;
+        cout << "node[" << i << "]" <<" " << node->value << endl;
         node = node->m_pNext;
         i++;
     }
@@ -91,7 +93,7 @@ bool PrintfListWithSibling(ListNode *head)
 {
     if (head == nullptr)
     {
-        std::cout << "invalid input" << std::endl;
+        cout << "invalid input" << endl;
         return false;
     }
 
@@ -99,14 +101,14 @@ bool PrintfListWithSibling(ListNode *head)
     int i = 0;
     while (node != nullptr)
     {
-        std::cout << "node[" << i << "]" <<" " << node->value;
+        cout << "node[" << i << "]" <<" " << setw(2) << setfill(' ') << node->value;
         if (node->m_Sibling)
         {
-            std::cout << " --> " << node->m_Sibling->value << std::endl;
+            cout << " --> " << node->m_Sibling->value << endl;
         }
         else
         {
-            std::cout << std::endl;
+            cout << endl;
         }
         
         node = node->m_pNext;
@@ -126,7 +128,7 @@ bool DeleteList(ListNode **head)
 {
     if (head == nullptr || *head == nullptr)
     {
-        std::cout << "invalid input" << std::endl;
+        cout << "invalid input" << endl;
         return false;
     }
     ListNode *node = *head;
@@ -142,5 +144,6 @@ bool DeleteList(ListNode **head)
 
     *head = nullptr;
     
+    cout << endl << "delete list done!" << endl;
     return true;
 }

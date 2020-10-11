@@ -19,7 +19,6 @@ using namespace std;
 
 /**
  * function: 复制原始链表的任意节点N并创建新节点N', 再把N'连接到N的后面
- * 
  */
 void CloneNodes(ListNode* pHead)
 {

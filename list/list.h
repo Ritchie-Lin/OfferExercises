@@ -1,12 +1,12 @@
 #ifndef __LIST_H__
 #define __LIST_H__
 
-typedef struct node
+struct ListNode
 {
     int value;
-    struct node *m_pNext;
-    struct node *m_Sibling;
-} ListNode;
+    ListNode *m_pNext;
+    ListNode *m_Sibling;
+} ;
 
 bool InitList(ListNode **head, int value);
 ListNode* AddNodeToList(ListNode *head, int value);
