@@ -75,13 +75,43 @@ int MoreThanHalfNum(int* numbers, int length)
     return result;
 }
 
+int MoreThanHalfNumPartition(int* numbers, int length)
+{
+    if (CheckInvalidArray(numbers, length))
+        return 0;
+    
+    int startIndex = 0;
+    int endIndex = length - 1;
+    int midIndex = (length - 1) >> 1;
+    int index = Partition(numbers, length, startIndex, endIndex);
+
+    while (index != midIndex)
+    {
+        if (index > midIndex)
+        {
+            endIndex = index - 1;
+            index = Partition(numbers, length, startIndex, endIndex);
+        }
+        else
+        {
+            startIndex = index + 1;
+            index = Partition(numbers, length, startIndex, endIndex);
+        }
+    }
+
+    if (!CheckMoreThanHalfTime(numbers, length, numbers[midIndex]))
+        return 0;
+    
+    return numbers[midIndex];
+}
 
 int main()
 {
     int data[] = {1, 2, 3, 2, 2, 2, 5, 4, 2};
     int length = sizeof(data)/sizeof(int);
 
-    int ret = MoreThanHalfNum(data, length);
+    //int ret = MoreThanHalfNum(data, length);
+    int ret = MoreThanHalfNumPartition(data, length);
     if (ret == 0 && g_bInputInvalid)
     {
         cout << "The number can't be found in " << TransferNumToStr(data, length) << endl;

@@ -46,47 +46,6 @@ void GetLeastNumbers(const vector<int>& data, intSet& leastNumbers, int k)
     }
 }
 
-int RandomInRange(int start, int end)
-{
-    if (end > start)
-    {
-        srand(time(NULL));
-        return start + rand() % (end - start);
-    }
-    return start;
-}
-
-void Swap(int& num1, int& num2)
-{
-    int temp = num1;
-    num1 = num2;
-    num2 = temp;
-}
-
-int Partitation(int data[], int length, int start, int end)
-{
-    if (data == nullptr || length <= 0 || start < 0 || end >= length)
-        return -1;
-    
-    int index = RandomInRange(start, end);
-    cout << "random index: " << index << ", value: " << data[index] << endl;
-    Swap(data[index], data[end]);
-
-    int smallIndex = start;
-    for (int i = start; i < end; i++)
-    {
-        if (data[i] < data[end])
-        {
-            if (i != smallIndex)
-                Swap(data[i], data[smallIndex]);
-            smallIndex++;
-        }
-    }
-
-    Swap(data[smallIndex], data[end]);
-    return smallIndex;
-}
-
 void GetLastNumbers(int input[], int length, int output[], int k)
 {
     if (input == nullptr || length <= 0 || output == nullptr || k >= length || k <= 0)
@@ -95,19 +54,19 @@ void GetLastNumbers(int input[], int length, int output[], int k)
     int startIndex = 0;
     int endIndex = length - 1;
     int targetIndex = k - 1;
-    int partIndex = Partitation(input, length, startIndex, endIndex);
+    int partIndex = Partition(input, length, startIndex, endIndex);
 
     while(partIndex != targetIndex)
     {
         if (partIndex > targetIndex)
         {
             endIndex = partIndex - 1;
-            partIndex = Partitation(input, length, startIndex, endIndex);
+            partIndex = Partition(input, length, startIndex, endIndex);
         }
         else
         {
             startIndex = partIndex + 1;
-            partIndex = Partitation(input, length, startIndex, endIndex);
+            partIndex = Partition(input, length, startIndex, endIndex);
         }
     }
 
