@@ -70,7 +70,7 @@ static void Swap(int &num1, int &num2)
  * @version 1.0
  * @author Ritchie.Lin
  */
-int Partition(int data[], int length, int start, int end)
+int UtilPartition(int data[], int length, int start, int end)
 {
     if (data == nullptr || length <= 0 || start < 0 || end >= length)
     {

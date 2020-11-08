@@ -19,7 +19,6 @@ using namespace std;
 push_heap():将容器内的数据组织为最小堆或最大堆。
 pop_heap():将容器最前面的数据与最后的数据交换，并将新的最值置于容器最前面。
 */
-
 template<typename T> class DynamicArray
 {
 private:
@@ -29,7 +28,7 @@ private:
 public:
     void Insert(T num)
     {
-        if (((min.size() + max.size()) & 0x1) == 0) //偶数
+        if (((min.size() + max.size()) & 0x1) == 0) //目前数据总量是偶数,预设放到最大堆
         {
             if (max.size() > 0 && num < max[0])
             {
@@ -39,12 +38,12 @@ public:
                 num = max[0];
 
                 pop_heap(max.begin(), max.end(), less<T>());
-                max.pop_back();
+                max.pop_back();// 对于最大堆，pop_heap之后，最大的数是容器内最后一个数据
             }
             min.push_back(num);// 将最大堆中最大的数放到最小堆中
             push_heap(min.begin(), min.end(), greater<T>());// ‘>‘，将min中的数据组织为最小堆
         }
-        else // 奇数
+        else // 目前数据总量是奇数，预设放到最小堆
         {
             if (min.size() > 0 && num > min[0])
             {
@@ -71,11 +70,11 @@ public:
         }
         
         T median = 0;
-        if ((size & 0x1) == 1)// 奇数
+        if ((size & 0x1) == 1)// 奇数，直接取最小堆 或 最大堆的
         {
             median = min[0];
         }
-        else
+        else // 偶数，取最小堆的最小值 和 最大堆的最大值，然后除2
         {
             median = (min[0] + max[0]) >> 1;
         }
